@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>脚本制作</title>
+    <link rel="stylesheet" href="layer/css/layui.css"/>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/script-manage.css"/>
+    <script src="layer/layui.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/echarts.js"></script>
+    <script src="js/ajaxfileupload.js"></script>
+</head>
+<body>
+    <div id="main">
+        <div class="left">
+            <select class="projectSelect" v-model="searchCondition.projectId" @change="projectSelectChange()">
+                <option :value="item.id" v-for="item in projectSelect" >{{item.projectName}}</option>
+            </select>
+            <img src="img/addDTS.png" @click="addNewScriptClick()">
+            <div>
+                <div v-for="item in scriptShowInfo" @click="scriptShow(item)">
+                    {{item.scriptName}}
+                </div>
+            </div>
+        </div>
+        <div class="codeTest">
+            <div>
+                <label>脚本名称：</label>
+                <input v-model="scriptInfo.scriptName"/>
+            </div>
+            <div>
+                <label>参数说明：</label>
+                <textarea style="width: 450px;height: 100px;" v-model="scriptInfo.scriptDesc">
+                </textarea>
+            </div>
+            <div>
+                <label>脚本编辑区：</label>
+                <textarea style="width: 450px;height: 600px;" v-model="scriptInfo.scriptContent">
+                </textarea>
+            </div>
+            <button class="layui-btn layui-btn-normal layui-btn-sm" @click="resetScriptInfo()">重置</button>
+            <button class="layui-btn layui-btn-normal layui-btn-sm" @click="check()">编译</button>
+            <button class="layui-btn layui-btn-normal layui-btn-sm" @click="addNewScript()">提交</button>
+            <button class="layui-btn layui-btn-normal layui-btn-sm" @click="connetTestCaseLayer()">关联用例</button>
+        </div>
+        <div class="codeRun">
+            <div>
+                <label>请输入参数：</label>
+                <input v-model="scriptRun.scriptParam"/>
+            </div>
+            <div>
+                <button class="layui-btn layui-btn-normal layui-btn-sm" @click="runScript()">运行</button>
+                <button class="layui-btn layui-btn-normal layui-btn-sm" @click="stop()">终止</button>
+                <button class="layui-btn layui-btn-normal layui-btn-sm" @click="restParam()">重置</button>
+            </div>
+            <div>
+                <label>控制台显示：</label>
+                <textarea class="consoleTextArea" v-model="scriptRun.consoleWindow">
+                </textarea>
+            </div>
+        </div>
+
+
+
+        <div id="connetTestCase" style="display:none ">
+            <div>
+                <div>接口类型:
+                    <label><input type="radio"  name="testcaseType" v-model="testcaseType" value="0" >界面用例</label>
+                    <label><input type="radio"  name="testcaseType" v-model="testcaseType" value="1">接口用例</label>
+                    <button @click="find()">查询</button>
+                </div>
+            </div>
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>用例名称</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(item,index) in testcaseInfo">
+                    <td><input type="radio" name="scriptInfotestCaseId" :value="item.id" v-model="testCaseId"></td>
+                    <td v-if="testcaseShowType==0">{{item.testcaseName}}</td>
+                    <td v-if="testcaseShowType==1">{{item.interfacName}}</td>
+                </tr>
+            </table>
+            <div id="page">
+            </div>
+            <button @click="connetTestCaseSure()">确定</button>
+        </div>
+
+
+    </div>
+</body>
+<script src="js/script-manage.js"></script>
+</html>

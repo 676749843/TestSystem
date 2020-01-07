@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="layer/css/layui.css"/>
+    <link rel="stylesheet" href="css/project-view.css"/>
+    <script src="layer/layui.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/echarts.js"></script>
+</head>
+<body>
+    <div id="main">
+        <div class="projectNumOverView radiuDiv">
+            <div class="projectNumOverView-div">
+                <div class="allProjectNum">{{projectNum}}</div>
+                <div class="allProjectText">总项目数</div>
+            </div>
+            <div class="projectNumOverView-div">
+                <div class="finishProjectNum">{{projectFinishedNum}}</div>
+                <div class="finishProjectText">已完成</div>
+            </div>
+        </div>
+
+        <div class="DTS-div radiuDiv" id="dtsTop5">
+            <div class="info">缺陷单</div>
+            <div class="showDiv">
+                <div>接触分配给用户的静态IP</div>
+                <div>2019-12-19 16:44:11</div>
+                <div>成功</div>
+            </div>
+        </div>
+
+        <div class="report-div radiuDiv" id="testcaseTop5">
+            <div class="info">报告</div>
+            <div class="showDiv">
+                <div>接触分配给用户的静态IP</div>
+                <div>2019-12-19 16:44:11</div>
+                <div>成功</div>
+            </div>
+
+            <div>
+            </div>
+
+        </div>
+
+        <div id="completeRatePie" class="radiuDiv completeRatePie">
+
+        </div>
+
+        <div id="numPie" class="radiuDiv numPie">
+
+        </div>
+
+    </div>
+    <script src="js/project-view.js"></script>
+</body>
+</html>

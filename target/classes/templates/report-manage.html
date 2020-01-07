@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="layer/css/layui.css"/>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/testCaseView-manage.css"/>
+    <script src="layer/layui.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/echarts.js"></script>
+    <script src="js/ajaxfileupload.js"></script>
+</head>
+<body>
+<div id="main">
+    <div class="tableDiv radiuDiv">
+        <div class="search">
+            <div>
+                <label>项目:</label>
+                <select class="projectSelect" v-model="searchCondition.projectId" @change="projectSelectChange()">
+                    <option :value="item.id" v-for="item in projectSelect" >{{item.projectName}}</option>
+                </select>
+
+                <label>报告类型:</label>
+                <select class="projectSelect" v-model="reportType" @change="reportTypeChange()">
+                    <option value="0" >饼图</option>
+                    <option value="1" >柱状图</option>
+                    <option value="2" >表格</option>
+                </select>
+            </div>
+        </div>
+        <div id="reportPie" v-if="reportType==0" style="width:100%;height:100%;float: left;">
+        </div>
+
+        <div id="reportBar" v-if="reportType==1" style="width:100%;height:100%;float: left;">
+        </div>
+
+        <table class="layui-table" v-if="reportType==2">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>用例名称</th>
+                <th>用例类型</th>
+                <th>执行结果</th>
+                <th>对应缺陷数量</th>
+                <th>缺陷已解决数量</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="(item,index) in reportInfo">
+                <td :title="searchCondition.startIndex+index">{{searchCondition.startIndex+index}}</td>
+                <td :title="item.testcaseName">{{item.testcaseName}}</td>
+
+                <td title="界面" v-if="item.testcaseType==0">界面</td>
+                <td title="接口" v-if="item.testcaseType==1">接口</td>
+
+                <td title="未执行" v-if="item.testcaseState==0">未执行</td>
+                <td title="失败" v-if="item.testcaseState==1">失败</td>
+                <td title="无效" v-if="item.testcaseState==2">无效</td>
+                <td title="成功" v-if="item.testcaseState==3">成功</td>
+
+                <td :title="item.dtsNum">{{item.dtsNum}}</td>
+                <td :title="item.dtsFinishNum">{{item.dtsFinishNum}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div id="page" class="page">
+
+        </div>
+
+    </div>
+
+</div>
+    <script src="js/report-manage.js"></script>
+</body>
+</html>

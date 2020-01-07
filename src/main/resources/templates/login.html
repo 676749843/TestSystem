@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>测试管理系统</title>
+        <link rel="stylesheet" href="css/login.css"/>
+        <script src="layer/layui.js"></script>
+        <script src="js/jquery-1.11.1.min.js"></script>
+        <script src="js/vue.js"></script>
+        <script type="text/javascript">
+            window.onload = function(){
+                if(window != top)
+                {
+                    top.location.href = location.href;
+                }
+            }
+        </script>
+
+    </head>
+    <body onkeydown="keyLogin();">
+        <div id="login" class="container">
+            <div class="loginbox">
+                <h1>测试管理系统</h1>
+                <form action="" method="post">
+                    <h4 class="login_title"><span>用户登录</span></h4>
+                    <div class="login_box"></div>
+                    <div class="dlk_left">
+                        <input type="text" placeholder="输入用户名" id="userName" v-model="userName" autocomplete="off" @keydown="emptyErrorInfo()"/>
+                        <input type="password" placeholder="输入密码" id="password" v-model="password" style="margin-top:28px;" autocomplete="off"/>
+                    </div>
+                    <div class="error"><span>{{errorInfo}}</span></div>
+                    <div class="login_buton">
+                        <input type="button" value="登录" @click="login()">
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+
+
+        <script src="js/login.js"></script>
+        <script>
+            function keyLogin() {
+                if (event.keyCode == 13){
+                    login.login();
+                }
+            }
+        </script>
+    </body>
+</html>

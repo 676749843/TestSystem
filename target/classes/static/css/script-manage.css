@@ -1,0 +1,53 @@
+.left
+{
+    width: 200px;
+    float: left;
+    height: 1000px;
+}
+.codeTest
+{
+    width: 500px;
+    float: left;
+    height: 1000px;
+}
+.codeRun
+{
+    width: 650px;
+    float: left;
+    height: 1000px;
+}
+.left select
+{
+    width: 150px;
+    float: left;
+}
+.left div
+{
+    width: 100%;
+    float: left;
+}
+select{
+
+    width: auto;
+    padding: 0 2%;
+    margin: 0;
+
+}
+textarea
+{
+    overflow-y:scroll
+}
+option{
+
+    text-align:center;
+
+}
+.consoleTextArea
+{
+    width: 630px;
+    height: 500px;
+}
+radio button
+{
+    cursor: pointer;
+}

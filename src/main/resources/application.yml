@@ -1,0 +1,11 @@
+server:
+  port: 8085
+  servlet:
+    context-path: /testSystem
+spring:
+  profiles:
+   active: dev
+  http:
+    encoding:
+      charset: utf-8
+      enabled: true

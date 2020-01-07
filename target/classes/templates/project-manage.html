@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="layer/css/layui.css"/>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/project-manage.css"/>
+    <script src="layer/layui.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/echarts.js"></script>
+</head>
+<body>
+    <div id="main">
+        <div class="projectTable radiuDiv">
+            <div>
+                <button @click="addNewProjectLayer()" class="layui-btn layui-btn-normal">添加项目</button>
+            </div>
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>项目名称</th>
+                    <th>用例数</th>
+                    <th>已执行用例数</th>
+                    <th>缺陷数</th>
+                    <th>剩余缺陷数</th>
+                    <th>负责人</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="(item,index) in projectInfo">
+                    <td :title="item.id">{{item.id}}</td>
+                    <td :title="item.projectName">{{item.projectName}}</td>
+                    <td :title="item.testCaseNum">{{item.testCaseNum}}</td>
+                    <td :title="item.testCaseFinishNum">{{item.testCaseFinishNum}}</td>
+                    <td :title="item.dtsNum">{{item.dtsNum}}</td>
+                    <td :title="item.dtsFinishNum">{{item.dtsFinishNum}}</td>
+                    <td :title="item.projectCreator">{{item.projectCreator}}</td>
+                    <td >
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div id="page" class="page"></div>
+        </div>
+
+
+        <div id="addNewProject" style="display: none">
+            <div>
+                <label>项目名称：</label>
+                <input type="text" v-model="addProjectInfo.projectName">
+            </div>
+            <div>
+                <label>项目描述：</label>
+                <textarea v-model="addProjectInfo.projectDesc">
+
+                </textarea>
+            </div>
+            <button @click="addNewProject()">确定</button>
+        </div>
+
+
+    </div>
+<script src="js/project-manage.js"></script>
+</body>
+</html>

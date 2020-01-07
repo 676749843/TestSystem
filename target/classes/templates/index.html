@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试管理系统</title>
+    <link rel="stylesheet" href="layer/css/layui.css"/>
+    <link rel="stylesheet" href="css/index.css"/>
+    <script src="layer/layui.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/vue.js"></script>
+</head>
+<body>
+<div id="index">
+    <div class="title">
+        <div class="title-div">测试管理系统</div>
+        <div class="title-user">用户：{{user.userName}}</div>
+    </div>
+    <div class="menu">
+            <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="margin-right: 10px;">
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a>项目管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a onclick="skipPage('project-view')">项目总览</a></dd>
+                        <dd><a onclick="skipPage('project-manage')">查看项目</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a>用例管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a onclick="skipPage('testCaseView-manage')">界面用例</a></dd>
+
+                        <dd><a onclick="skipPage('testCaseInterface-manage')">接口用例</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a onclick="skipPage('dts-manage')">缺陷管理</a></li>
+                <li class="layui-nav-item"><a onclick="skipPage('report-manage')">报告管理</a></li>
+                <li class="layui-nav-item"><a onclick="skipPage('script-manage')">脚本管理</a></li>
+
+
+                <li class="layui-nav-item" >
+                    <a class="menu-a" ><i class="layui-icon layui-icon-user"></i> 设置</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:void(0);" @click="updatePasswd()">修改密码</a></dd>
+                        <dd><a href="javascript:void(0);" @click="logout()">退出</a></dd>
+                    </dl>
+                </li>
+            </ul>
+    </div>
+    <div id="updatePasswordDiv" class="updatePasswordDiv" style="display: none">
+        <div class="updatePasswordDiv-div">
+            <div>旧密码：</div>
+            <input v-model='oldPasswd' type="password">
+        </div>
+        <div class="updatePasswordDiv-div">
+            <div>新密码：</div>
+            <input v-model='newPasswd' type="password">
+        </div>
+        <div class="updatePasswordDiv-div">
+            <div>确认密码：</div>
+            <input v-model='confirmPasswd' type="password">
+        </div>
+        <div class="updatePasswordDiv-warnInfo">{{warnInfo}}</div>
+        <div class="updatePasswordDiv-div">
+            <button class="layui-btn layui-btn-normal" @click="updatePassword()">确定</button>
+            <button class="layui-btn layui-btn-normal" @click="closeWin()">取消</button>
+        </div>
+    </div>
+</div>
+    <iframe class="myiframe"  id="myiframe" scrolling="no" frameborder="0" src="skipMenu?url=project-view"></iframe>
+
+</body>
+<script src="js/index.js"></script>
+<script>
+
+    window.onload=function(){
+        //注意：导航 依赖 element 模块，否则无法进行功能性操作
+        layui.use('element', function(){
+            var element = layui.element;
+        });
+    }
+
+
+    function skipPage(type)
+    {
+        $("#myiframe").attr("src","skipMenu?url="+type);
+    }
+    $('li a').click(function(){
+        $('.layui-this').removeClass('layui-this');
+        $(this).addClass("layui-this");
+    });
+</script>
+
+</html>

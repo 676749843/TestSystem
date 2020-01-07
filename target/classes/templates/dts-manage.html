@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="layer/css/layui.css"/>
+    <link rel="stylesheet" href="css/common.css"/>
+    <link rel="stylesheet" href="css/testCaseView-manage.css"/>
+    <script src="layer/layui.js"></script>
+    <script src="js/jquery-1.11.1.min.js"></script>
+    <script src="js/vue.js"></script>
+    <script src="js/echarts.js"></script>
+    <script src="js/ajaxfileupload.js"></script>
+</head>
+<body>
+        <div id="main">
+            <div class="tableDiv radiuDiv">
+                <div class="search">
+                    <div>
+                        <label>项目:</label>
+                        <select class="projectSelect" v-model="searchCondition.projectId" @change="projectChange()">
+                            <option :value="item.id" v-for="item in projectSelect" >{{item.projectName}}</option>
+                        </select>
+                    </div>
+                    <div class="marginLeft15">
+                        <label>缺陷名称:</label>
+                        <input type="text" v-model="searchCondition.dtsName">
+                    </div>
+                    <div class="marginLeft15">
+                        <button class="layui-btn layui-btn-normal" @click="initDtsTable(true)">搜索</button>
+                    </div>
+                </div>
+                <table class="layui-table">
+                    <thead>
+                    <tr>
+                        <th>标题</th>
+                        <th>描述</th>
+                        <th>等级</th>
+                        <th>提出人</th>
+                        <th>解决人</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr v-for="(item,index) in dtsInfo">
+                        <td :title="item.dtsTitile">{{item.dtsTitile}}</td>
+                        <td :title="item.dtsDesc">{{item.dtsDesc}}</td>
+                        <td :title="item.dtsLevel">{{item.dtsLevel}}</td>
+                        <td :title="item.dtsSolver">{{item.dtsCreator}}</td>
+                        <td :title="item.dtsSolver">{{item.dtsSolver}}</td>
+                        <td title="未执行" v-if="item.dtsState==0">未解决</td>
+                        <td title="失败" v-if="item.dtsState==1">已确认</td>
+                        <td title="无效" v-if="item.dtsState==2">已解决</td>
+                        <td>
+
+                            <img title="删除" src="img/table-delete.png" @click="delDTS(item)" />
+                            <img title="编辑" src="img/table-edit.png" @click="editDTSLayer(item)" />
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div id="dtsPage" class="page"></div>
+            </div>
+
+
+
+
+
+            <div id="editDTS" class="layerDiv" style="display: none">
+                <div>
+                    <label>缺陷名称：</label>
+                    <input type="text" v-model="editDTS.dtsTitile">
+                </div>
+                <div>
+                    <label>缺陷描述：</label>
+                    <textarea v-model="editDTS.dtsDesc">
+
+            </textarea>
+                </div>
+                <div>
+                    <label>缺陷等级：</label>
+                    <select v-model="editDTS.dtsLevel">
+                        <option value="一般">一般</option>
+                        <option value="严重">严重</option>
+                        <option value="致命">致命</option>
+                    </select>
+                </div>
+                <div>
+                    <label>解决人：</label>
+                    <select v-model="editDTS.dtsSolver">
+                        <option :value="item.userName" v-for="item in userDeverInfo" >{{item.userName}}</option>
+                    </select>
+                </div>
+                <div>
+                    <label>状态：</label>
+                    <select v-model="editDTS.dtsState">
+                        <option value="0">未解决</option>
+                        <option value="1">已确认</option>
+                        <option value="2">已解决</option>
+                    </select>
+                </div>
+                <div class="layerButtonDiv">
+                    <button class="layui-btn layui-btn-normal" @click="editDTSButton()">确定</button>
+                </div>
+            </div>
+        </div>
+        <script src="js/dts-manage.js"></script>
+</body>
+</html>

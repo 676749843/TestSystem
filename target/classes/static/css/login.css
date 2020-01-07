@@ -1,0 +1,121 @@
+body
+{
+    background-image: url(../img/login_bj1.png);
+    background-size: 100%;
+}
+.container h2
+{
+    text-align: center;
+    color: #fff; margin-top: 8%;
+}
+.container h2 span
+{
+    font-size: 16px;
+}
+.login_box
+{
+    width: 377px;
+    height: 112px;
+    background: url(../img/loginbox.jpg);
+    margin: 20px auto 0 auto;
+}
+.login_box span
+{
+    float: right;
+    margin: 16px -90px 0 0;
+    width: 72px;
+}
+.login_box span .fa
+{
+    margin-right: 3px;
+}
+.dlk_left
+{
+    width: 218px;
+    float: left;
+    margin-left: 180px;
+    margin-top: -105px;
+}
+.dlk_left input
+{
+    width: 290px;
+    height: 30px;
+    border: 0px;
+    font-size: 12px;
+    font-weight: bold;
+    margin-top:5px;
+    border-radius:4px;
+    padding: 0px 10px;
+    line-height: 30px;
+}
+.login_title
+{
+    padding-top:10px;
+    margin: 0 115px;
+    letter-spacing:2px;
+}
+.login_buton
+{
+    /*margin:26px auto;*/
+    margin-top: 10px;
+}
+.login_buton input
+{
+    width: 377px;
+    margin: 0 auto;
+    display:block;
+    line-height: 40px;
+    background-color: #F18101;
+    color: white;
+    border: 0;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 15px;
+}
+.loginbox
+{
+    width: 610px;
+    margin: 150px auto;
+    height: 300px;
+}
+.loginbox form
+{
+    background-color: white;
+    padding: 38px 0;
+    border-radius: 10px;
+}
+.loginbox h1
+{
+    margin: 20px auto;
+    text-align: center;
+    color: white;
+    letter-spacing: 3px;
+}
+.copyright
+{
+    font-family: "微软雅黑";
+    font-size: 14px;
+    color: #FFFFFF;
+    text-align: center;
+}
+.copyright1
+{
+    font-family: "微软雅黑";
+    font-size: 12px;
+    color: #666;
+    text-align: center;
+    position: absolute;
+    bottom: 5px;
+    width: 90%;
+}
+.error
+{
+    margin-left: 115px;
+    height: 15px;
+}
+.error>span
+{
+    font-size: 14px;
+    font-weight:bold;
+    color:#ff0000;
+}
